@@ -1,0 +1,4 @@
+.reddit_reader_token.json
+.reddit_reader_state.json
+__pycache__/
+*.pyc
