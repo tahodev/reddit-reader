@@ -64,11 +64,16 @@ Endpoints used: `GET /api/v1/me`, `GET /subreddits/mine/subscriber`,
 ## Usage
 
 ```sh
+python reddit_reader.py --help               # or: python reddit_reader.py help
 python reddit_reader.py subs                 # list my subscribed subreddits
 python reddit_reader.py hot programming      # hot threads in r/programming
 python reddit_reader.py comments <post_id>   # comments on one thread
 python reddit_reader.py comment <post_id>    # write a comment by hand, review, confirm
 ```
+
+`--help` (or `help`) prints the full command list with one-line descriptions
+and exits 0. It needs no credentials and makes no API calls, so it works on a
+clean checkout.
 
 ## License
 
