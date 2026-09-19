@@ -208,18 +208,28 @@ def cmd_comment(post_id):
     print("Posted.")
 
 
-USAGE = """usage:
-  python reddit_reader.py auth
-  python reddit_reader.py subs
-  python reddit_reader.py hot <subreddit> [limit]
-  python reddit_reader.py comments <post_id> [limit]
-  python reddit_reader.py comment <post_id>"""
+HELP = """reddit-reader: personal Reddit CLI reader.
+
+usage:
+  python reddit_reader.py auth                  authorize with Reddit (one-time OAuth setup)
+  python reddit_reader.py subs                  list my subscribed subreddits
+  python reddit_reader.py hot <subreddit> [n]   show hot threads in a subreddit (default 10)
+  python reddit_reader.py comments <post_id> [n] show comments on a thread (default 20)
+  python reddit_reader.py comment <post_id>     write a comment by hand, review, confirm
+  python reddit_reader.py help                  show this help
+
+Read-only by default; the comment command is the only write and always
+requires typing the text and confirming it interactively.
+"""
 
 if __name__ == "__main__":
     args = sys.argv[1:]
     if not args:
-        sys.exit(USAGE)
+        sys.exit(HELP)
     cmd, rest = args[0], args[1:]
+    if cmd in ("help", "--help", "-h"):
+        print(HELP)
+        sys.exit(0)
     if cmd == "auth":
         cmd_auth()
     elif cmd == "subs":
@@ -231,4 +241,4 @@ if __name__ == "__main__":
     elif cmd == "comment" and rest:
         cmd_comment(rest[0])
     else:
-        sys.exit(USAGE)
+        sys.exit(HELP)
